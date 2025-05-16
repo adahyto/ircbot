@@ -1,0 +1,50 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IRC BOTS</title>
+    <link rel="stylesheet" href="index.css" />
+    <script src="bot.js"></script>
+    <script src="fick-bot.js"></script>
+  </head>
+  <body>
+    <div class="dnr-tile">
+      <div class="dnr-tile-header">
+        <h2>FickBot settings</h2>
+      </div>
+      <div class="dnr-tile-content">
+        <form>
+          <div>
+            <label for="nick">nick</label>
+            <input id="nick" type="text" name="nick" value="jebacz" />
+          </div>
+          <div>
+            <label for="chanel">chanel</label>
+            <input id="chanel" type="text" name="chanel" value="#polen2" />
+          </div>
+          <div>
+            <label for="topics">co jebiemy</label>
+            <input
+              id="topics"
+              type="text"
+              name="topics"
+              value="mete, gravelowców, izrael, pfizer, xiaomi, pontyfikat"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="dnr-tile-actions">
+        <button id="stop-fickbot" class="dnr-btn">Stop</button>
+        <button id="run-fickbot" class="dnr-btn dnr-btn--accent">Run</button>
+      </div>
+    </div>
+    <br />
+    <div id="fickbot" style="display: none" class="dnr-tile">
+      <div class="dnr-tile-header">
+        <h2>FickBot</h2>
+      </div>
+      <div class="dnr-tile-content"></div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
