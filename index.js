@@ -3,7 +3,7 @@ let multiFickBot = null;
 document.querySelector("#run-fickbot").addEventListener("click", () => {
   if (multiFickBot) multiFickBot.stop();
   const bot = new IrcFickerBot(
-    document.querySelector("#nick"),
+    document.querySelector("#nick").value,
     (msg) => {
       return (
         msg.slice(0, 4) === "jeb " ||
@@ -11,8 +11,8 @@ document.querySelector("#run-fickbot").addEventListener("click", () => {
         msg.includes("jebac")
       );
     },
-    document.querySelector("#topics"),
-    document.querySelector("#nick")
+    document.querySelector("#topics").value,
+    document.querySelector("#nick").value
   );
   multiFickBot = bot;
   multiFickBot.init();
