@@ -11,6 +11,8 @@ class IrcFickerBot {
     this.irc.onOpen((event) => {
       this.irc.setNick(this.nick);
       this.irc.joinChanel(this.chanel);
+
+      console.log("connection open: ", event);
     });
 
     this.irc.onMsg((event) => {
