@@ -8,7 +8,7 @@ class IrcFickerBot {
   }
 
   init() {
-    this.irc.onopen = this.onOpen.bind(this);
+    this.irc.connection.onopen = this.onOpen.bind(this);
 
     // this.irc.client.onMsg(event) => {
     //   if (this.isFickNeeded(event.data)) {
