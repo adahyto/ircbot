@@ -10,7 +10,10 @@ const runFickBot = () => {
         msg.includes("jebac")
       );
     },
-    document.querySelector('.sirc-form-input[name="topics"]').value,
+    document
+      .querySelector('.sirc-form-input[name="topics"]')
+      .value.replace(/\s/g, "")
+      .split(","),
     document.querySelector('.sirc-form-input[name="nick"]').value
   );
   multiFickBot.init();
