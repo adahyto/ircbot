@@ -9,6 +9,7 @@ class IrcFickerBot {
 
   init() {
     this.irc.onOpen((event) => {
+      console.log(this.nick);
       this.irc.setNick(this.nick);
       this.irc.joinChanel(this.chanel);
 
