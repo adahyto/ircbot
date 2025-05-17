@@ -1,73 +1,70 @@
 // const WebSocket = require("ws");
 
 class IrcSocket {
-  newConnection(url) {
-    return new WebSocket(url);
+  constructor(url) {
+    this.connection = new WebSocket(url);
   }
 
-  keepConnection(conn) {
+  keepConnection() {
     setInterval(() => {
-      conn.send("");
+      this.connection.send("");
     }, 45000);
   }
 
-  setNick(conn, nick) {
-    conn.send(`NICK ${nick}`);
+  setNick(nick) {
+    this.connection.send(`NICK ${nick}`);
   }
 
-  joinChanel(conn, name) {
-    conn.send(`JOIN ${name}`);
-    this.keepConnection(conn);
+  joinChanel(name) {
+    this.connection.send(`JOIN ${name}`);
+    this.keepConnection();
   }
 
-  quit(conn, name) {
-    conn.send(`QUIT ${name}`);
+  quit(name) {
+    this.connection.send(`QUIT ${name}`);
   }
 
-  send(conn, msg) {
-    conn.send(msg);
+  send(msg) {
+    this.connection.send(msg);
   }
 
-  onMsg(conn, func) {
-    conn.onmessage = (event) => {
+  onMsg(func) {
+    this.connection.onmessage = (event) => {
       func(event);
     };
   }
 
-  onOpen(conn, func) {
-    conn.onopen = (event) => {
+  onOpen(func) {
+    this.connection.onopen = (event) => {
       func(event);
     };
   }
 }
 
-class IrcFickerBot extends IrcSocket {
+class IrcFickerBot {
   constructor(chanel, fickConditions, fickTopics, nick) {
-    super();
     this.chanel = chanel;
     this.fickConditions = fickConditions;
     this.fickTopics = fickTopics;
     this.nick = nick;
-    this.connection = this.newConnection(
-      "wss://web.libera.chat/webirc/websocket/"
-    );
+    this.irc = new IrcSocket("wss://web.libera.chat/webirc/websocket/");
   }
 
   init() {
-    this.onOpen(this.connection, (event) => {
-      this.setNick(this.nick);
-      this.joinChanel(this.chanel);
+    this.irc.onOpen((event) => {
+      this.irc.setNick(this.nick);
+      this.irc.joinChanel(this.chanel);
     });
 
-    this.onMsg(this.connection, (event) => {
+    this.irc.onMsg((event) => {
       if (this.isFickNeeded(event.data)) {
-        this.send(this.fick());
+        this.irc.send(this.fick());
       }
     });
   }
 
   stop() {
-    this.quit(this.connection);
+    this.irc.quit();
   }
 
   isFickNeeded(msg) {
