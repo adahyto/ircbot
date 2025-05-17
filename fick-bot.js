@@ -1,4 +1,9 @@
 class IrcFickerBot {
+  chanel = null;
+  fickConditions = null;
+  fickTopics = null;
+  nick = null;
+  irc = null;
   constructor(chanel, fickConditions, fickTopics, nick) {
     this.chanel = chanel;
     this.fickConditions = fickConditions;
