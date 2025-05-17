@@ -17,8 +17,8 @@ class IrcFickerBot {
     this.irc.joinChanel(this.chanel);
   }
 
-  onMsg(msg) {
-    if (this.fickConditions(msg)) {
+  onMsg(event) {
+    if (event.data && this.fickConditions(event.data)) {
       this.irc.send(this.fick());
     }
   }
