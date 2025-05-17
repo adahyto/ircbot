@@ -20,7 +20,6 @@ class IrcSocket {
   }
 
   joinChanel(name) {
-    console.log(`JOIN ${name}`, this.connection);
     this.connection.send(`JOIN ${name}`);
     this.keepConnection();
   }
