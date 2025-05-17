@@ -5,7 +5,7 @@ class IrcSocket {
     this.connection = new WebSocket(url);
   }
 
-  get connection() {
+  get client() {
     return this.connection;
   }
 
