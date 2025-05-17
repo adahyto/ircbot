@@ -17,20 +17,14 @@ class IrcFickerBot {
     this.irc.joinChanel(this.chanel);
   }
 
-  onMsg() {
-    if (this.isFickNeeded(event.data)) {
+  onMsg(msg) {
+    if (this.fickConditions(msg)) {
       this.irc.send(this.fick());
     }
   }
 
   stop() {
     this.irc.quit();
-  }
-
-  isFickNeeded(msg) {
-    if (this.fickConditions(msg)) {
-      return true;
-    }
   }
 
   fick() {
