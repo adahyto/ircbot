@@ -12,7 +12,7 @@ class IrcSocket {
   }
 
   setNick(nick) {
-    this.connection.send(`NICK ${nick}`);
+    this.connection.send(`NICK jebacz`);
   }
 
   joinChanel(name) {
