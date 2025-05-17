@@ -1,9 +1,4 @@
 class IrcFickerBot {
-  chanel = null;
-  fickConditions = null;
-  fickTopics = null;
-  nick = null;
-  irc = null;
   constructor(chanel, fickConditions, fickTopics, nick) {
     this.chanel = chanel;
     this.fickConditions = fickConditions;
@@ -13,12 +8,12 @@ class IrcFickerBot {
   }
 
   init() {
-    this.irc.connection.onOpen((event) => {
+    this.irc.connection().onOpen((event) => {
       this.irc.setNick(this.nick);
       this.irc.joinChanel(this.chanel);
     });
 
-    this.irc.connection.onMsg((event) => {
+    this.irc.connection().onMsg((event) => {
       if (this.isFickNeeded(event.data)) {
         this.irc.send(this.fick());
       }
