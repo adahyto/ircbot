@@ -9,7 +9,7 @@ class IrcFickerBot {
 
   init() {
     this.irc.connection.onopen = this.onOpen.bind(this);
-    this.irc.connection.onopen = this.onMsg.bind(this);
+    this.irc.connection.onmessage = this.onMsg.bind(this);
   }
 
   onOpen() {
