@@ -11,7 +11,7 @@ const runFickBot = () => {
       );
     },
     document.querySelector('.sirc-form-input[name="topics"]').value,
-    document.querySelector('.sirc-form-input[name="nick"]')
+    document.querySelector('.sirc-form-input[name="nick"]').value
   );
   multiFickBot.init();
   document.querySelector("#sirc-logger--fickbot").style.display = "block";
