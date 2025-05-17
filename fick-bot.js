@@ -8,12 +8,12 @@ class IrcFickerBot {
   }
 
   init() {
-    this.irc.onOpen((event) => {
+    this.irc.connection.onOpen((event) => {
       this.irc.setNick(this.nick);
       this.irc.joinChanel(this.chanel);
     });
 
-    this.irc.onMsg((event) => {
+    this.irc.connection.onMsg((event) => {
       if (this.isFickNeeded(event.data)) {
         this.irc.send(this.fick());
       }
