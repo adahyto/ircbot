@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>IRC BOTS</title>
     <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="styles.css" />
     <script src="bot.js"></script>
     <script src="fick-bot.js"></script>
   </head>
@@ -16,16 +17,26 @@
         <form>
           <div>
             <label for="nick">nick</label>
-            <input id="nick" type="text" name="nick" value="jebacz" />
+            <input
+              class="sirc-form-input"
+              type="text"
+              name="nick"
+              value="jebacz"
+            />
           </div>
           <div>
             <label for="chanel">chanel</label>
-            <input id="chanel" type="text" name="chanel" value="#polen2" />
+            <input
+              class="sirc-form-input"
+              type="text"
+              name="chanel"
+              value="#polen2"
+            />
           </div>
           <div>
             <label for="topics">co jebiemy</label>
             <input
-              id="topics"
+              class="sirc-form-input"
               type="text"
               name="topics"
               value="mete, gravelowców, izrael, pfizer, xiaomi, pontyfikat"
@@ -34,12 +45,14 @@
         </form>
       </div>
       <div class="dnr-tile-actions">
-        <button id="stop-fickbot" class="dnr-btn">Stop</button>
-        <button id="run-fickbot" class="dnr-btn dnr-btn--accent">Run</button>
+        <button id="sirc-fickbot-control--stop" class="dnr-btn">Stop</button>
+        <button id="sirc-fickbot-control--run" class="dnr-btn dnr-btn--accent">
+          Run
+        </button>
       </div>
     </div>
     <br />
-    <div id="fickbot" style="display: none" class="dnr-tile">
+    <div id="sirc-logger--fickbot" class="sirc-logger" class="dnr-tile">
       <div class="dnr-tile-header">
         <h2>FickBot</h2>
       </div>

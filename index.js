@@ -1,9 +1,8 @@
 let multiFickBot = null;
 
-document.querySelector("#run-fickbot").addEventListener("click", () => {
-  if (multiFickBot) multiFickBot.stop();
-  const bot = new IrcFickerBot(
-    document.querySelector("#nick").value,
+const runFickBot = () => {
+  multiFickBot = new IrcFickerBot(
+    document.querySelector('.sirc-form-input[name="chanel"]'),
     (msg) => {
       return (
         msg.slice(0, 4) === "jeb " ||
@@ -11,14 +10,22 @@ document.querySelector("#run-fickbot").addEventListener("click", () => {
         msg.includes("jebac")
       );
     },
-    document.querySelector("#topics").value,
-    document.querySelector("#nick").value
+    document.querySelector('.sirc-form-input[name="topics"]').value,
+    document.querySelector('.sirc-form-input[name="nick"]')
   );
-  multiFickBot = bot;
   multiFickBot.init();
-  document.querySelector("#fickbot").style.display = "block";
-});
+  document.querySelector("#sirc-logger--fickbot").style.display = "block";
+};
 
-document.querySelector("#stop-fickbot").addEventListener("click", () => {
-  multiFickBot.stop();
-});
+document
+  .querySelector("#sirc-fickbot-control--run")
+  .addEventListener("click", () => {
+    if (multiFickBot) multiFickBot.stop();
+    runFickBot();
+  });
+
+document
+  .querySelector("#sirc-fickbot-control--stop")
+  .addEventListener("click", () => {
+    multiFickBot.stop();
+  });
