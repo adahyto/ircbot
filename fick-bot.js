@@ -8,16 +8,18 @@ class IrcFickerBot {
   }
 
   init() {
-    this.irc.client.onopen((event) => {
-      this.irc.setNick(this.nick);
-      this.irc.joinChanel(this.chanel);
-    });
+    this.irc.onopen = this.onOpen.bind(this);
 
     // this.irc.client.onMsg(event) => {
     //   if (this.isFickNeeded(event.data)) {
     //     this.irc.send(this.fick());
     //   }
     // });
+  }
+
+  onOpen() {
+    this.irc.setNick(this.nick);
+    this.irc.joinChanel(this.chanel);
   }
 
   stop() {
