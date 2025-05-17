@@ -11,35 +11,35 @@ class IrcSocket {
 
   keepConnection() {
     setInterval(() => {
-      this.connection.send("");
+      this.client.send("");
     }, 45000);
   }
 
   setNick(nick) {
-    this.connection.send(`NICK jebacz`);
+    this.client.send(`NICK jebacz`);
   }
 
   joinChanel(name) {
-    this.connection.send(`JOIN ${name}`);
+    this.client.send(`JOIN ${name}`);
     this.keepConnection();
   }
 
   quit(name) {
-    this.connection.send(`QUIT ${name}`);
+    this.client.send(`QUIT ${name}`);
   }
 
   send(msg) {
-    this.connection.send(msg);
+    this.client.send(msg);
   }
 
   onMsg(func) {
-    this.connection.onmessage = (event) => {
+    this.client.onmessage = (event) => {
       func(event);
     };
   }
 
   onOpen(func) {
-    this.connection.onopen = (event) => {
+    this.client.onopen = (event) => {
       func(event);
     };
   }
