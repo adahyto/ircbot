@@ -43,11 +43,11 @@ class IrcSocket {
 
 class IrcFickerBot extends IrcSocket {
   constructor(chanel, fickConditions, fickTopics, nick) {
+    super();
     this.chanel = chanel;
     this.fickConditions = fickConditions;
     this.fickTopics = fickTopics;
     this.nick = nick;
-    this.super();
     this.connection = this.newConnection(
       "wss://web.libera.chat/webirc/websocket/"
     );
