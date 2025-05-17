@@ -55,19 +55,19 @@ class IrcFickerBot extends IrcSocket {
 
   init() {
     this.onOpen(this.connection, (event) => {
-      this.connection.setNick(this.nick);
-      this.connection.joinChanel(this.chanel);
+      this.setNick(this.nick);
+      this.joinChanel(this.chanel);
     });
 
     this.onMsg(this.connection, (event) => {
       if (this.isFickNeeded(event.data)) {
-        this.this.connection.send(this.fick());
+        this.send(this.fick());
       }
     });
   }
 
   stop() {
-    this.connection.quit();
+    this.quit(this.connection);
   }
 
   isFickNeeded(msg) {
