@@ -1,5 +1,3 @@
-// const WebSocket = require("ws");
-
 class IrcSocket {
   constructor(url) {
     this.connection = new WebSocket(url);

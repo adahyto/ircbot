@@ -1,8 +1,10 @@
 let multiFickBot = null;
 
 const runFickBot = () => {
-  multiFickBot = new IrcFickerBot(
+  multiFickBot = new FickerIrcBot(
+    "wss://web.libera.chat/webirc/websocket/",
     document.querySelector('.sirc-form-input[name="chanel"]').value,
+    document.querySelector('.sirc-form-input[name="nick"]').value,
     (msg) => {
       return (
         msg.slice(0, 4) === "jeb " ||
@@ -13,8 +15,7 @@ const runFickBot = () => {
     document
       .querySelector('.sirc-form-input[name="topics"]')
       .value.replace(/\s/g, "")
-      .split(","),
-    document.querySelector('.sirc-form-input[name="nick"]').value
+      .split(",")
   );
   multiFickBot.init();
 
