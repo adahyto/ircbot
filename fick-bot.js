@@ -1,5 +1,5 @@
 class IrcBot {
-  constructor() {
+  constructor(url) {
     this.irc = new IrcSocket(url);
   }
 }
