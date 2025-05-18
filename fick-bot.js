@@ -1,5 +1,9 @@
-class IrcSocket {
-  constructor(url) {
+class FickerIrcBot {
+  constructor(url, chanel, nick, fickConditions, fickTopics) {
+    this.chanel = chanel;
+    this.nick = nick;
+    this.fickConditions = fickConditions;
+    this.fickTopics = fickTopics;
     this.connection = new WebSocket(url);
   }
 
@@ -23,16 +27,6 @@ class IrcSocket {
 
   send(msg) {
     this.connection.send(msg);
-  }
-}
-
-class FickerIrcBot extends IrcSocket {
-  constructor(url, chanel, nick, fickConditions, fickTopics) {
-    super(url);
-    this.chanel = chanel;
-    this.nick = nick;
-    this.fickConditions = fickConditions;
-    this.fickTopics = fickTopics;
   }
 
   init() {
