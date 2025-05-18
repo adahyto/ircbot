@@ -21,7 +21,6 @@ class IrcSocket {
 
   joinChanel(name) {
     this.client.send(`JOIN ${name}`);
-    this.keepConnection();
   }
 
   quit(name) {
@@ -30,17 +29,5 @@ class IrcSocket {
 
   send(msg) {
     this.client.send(msg);
-  }
-
-  onMsg(func) {
-    this.client.onmessage = (event) => {
-      func(event);
-    };
-  }
-
-  onOpen(func) {
-    this.client.onopen = (event) => {
-      func(event);
-    };
   }
 }

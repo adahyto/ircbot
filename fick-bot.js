@@ -8,27 +8,24 @@ class IrcFickerBot {
   }
 
   init() {
-    this.irc.connection.onopen = this.onOpen.bind(this);
-    this.irc.connection.onmessage = this.onMsg.bind(this);
+    this.irc.connection.onopen = (event) => {
+      this.irc.joinChanel("#polen2");
+      console.log(event);
+    };
   }
 
-  onOpen() {
-    this.irc.setNick(this.nick);
-    this.irc.joinChanel(this.chanel);
-  }
+  //   onMsg(event) {
+  //     if (event.data && this.fickConditions(event.data)) {
+  //       this.irc.send(this.fick());
+  //     }
+  //   }
 
-  onMsg(event) {
-    if (event.data && this.fickConditions(event.data)) {
-      this.irc.send(this.fick());
-    }
-  }
+  //   stop() {
+  //     this.irc.quit();
+  //   }
 
-  stop() {
-    this.irc.quit();
-  }
-
-  fick() {
-    const ran = Math.floor(Math.random() * this.fickTopics.length + 1);
-    return `*** jebiemy ${this.fickTopics[ran]} ***`;
-  }
+  //   fick() {
+  //     const ran = Math.floor(Math.random() * this.fickTopics.length + 1);
+  //     return `*** jebiemy ${this.fickTopics[ran]} ***`;
+  //   }
 }
