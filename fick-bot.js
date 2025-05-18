@@ -18,7 +18,6 @@ class FickerIrcBot extends IrcBot {
       this.irc.setNick(this.nick);
       this.irc.joinChanel(this.chanel);
     });
-
     this.irc.connection.addEventListener("message", async (e) => {
       var line = e.data;
       if (line instanceof Blob) {
