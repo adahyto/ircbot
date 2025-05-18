@@ -13,26 +13,10 @@ class FickerIrcBot {
     }, 45000);
   }
 
-  setNick(nick) {
-    this.connection.send(`NICK ${nick}`);
-  }
-
-  joinChanel(name) {
-    this.connection.send(`JOIN ${name}`);
-  }
-
-  quit(name) {
-    this.connection.send(`QUIT ${name}`);
-  }
-
-  send(msg) {
-    this.connection.send(msg);
-  }
-
   init() {
     this.connection.addEventListener("open", () => {
-      this.setNick(this.nick);
-      this.joinChanel(this.chanel);
+      this.connection.send(`NICK ${this.nick}`);
+      this.connection.send(`JOIN ${this.chanel}`);
     });
 
     this.connection.addEventListener("message", async (e) => {
