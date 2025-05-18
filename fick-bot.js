@@ -1,25 +1,21 @@
 class IrcBot {
-  constructor(url, chanel, nick) {
-    this.chanel = chanel;
-    this.nick = nick;
+  constructor() {
     this.irc = new IrcSocket(url);
-  }
-  init() {
-    this.irc.connection.addEventListener("open", () => {
-      this.irc.setNick(this.nick);
-      this.irc.joinChanel(this.chanel);
-    });
   }
 }
 
 class FickerIrcBot extends IrcBot {
   constructor(url, chanel, nick, fickConditions, fickTopics) {
-    super(url, chanel, nick);
+    super(url);
     this.fickConditions = fickConditions;
     this.fickTopics = fickTopics;
   }
 
   init() {
+    this.irc.connection.addEventListener("open", () => {
+      this.irc.setNick(nick);
+      this.irc.joinChanel(chanel);
+    });
     this.irc.connection.addEventListener("message", async (e) => {
       var line = e.data;
       if (line instanceof Blob) {
