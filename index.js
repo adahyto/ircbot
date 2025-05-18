@@ -2,7 +2,7 @@ let multiFickBot = null;
 
 const runFickBot = () => {
   multiFickBot = new FickerIrcBot(
-    "ws://web.libera.chat/webirc/websocket/",
+    "wss://web.libera.chat/webirc/websocket/",
     document.querySelector('.sirc-form-input[name="chanel"]').value,
     document.querySelector('.sirc-form-input[name="nick"]').value,
     (msg) => {
@@ -25,11 +25,6 @@ const runFickBot = () => {
 document
   .querySelector("#sirc-fickbot-control--run")
   .addEventListener("click", () => {
-    if (multiFickBot) multiFickBot.stop();
+    if (multiFickBot) return;
     runFickBot();
   });
-
-// document
-//   .querySelector("#sirc-fickbot-control--stop")
-//   .addEventListener("click", () => {
-//   });
