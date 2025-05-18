@@ -29,8 +29,7 @@ document
     runFickBot();
   });
 
-document
-  .querySelector("#sirc-fickbot-control--stop")
-  .addEventListener("click", () => {
-    multiFickBot.stop();
-  });
+// document
+//   .querySelector("#sirc-fickbot-control--stop")
+//   .addEventListener("click", () => {
+//   });
