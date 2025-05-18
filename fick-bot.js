@@ -1,10 +1,32 @@
-class IrcBot {
+class IrcSocket {
   constructor(url) {
-    this.irc = new IrcSocket(url);
+    this.connection = new WebSocket(url);
+  }
+
+  keepConnection() {
+    setInterval(() => {
+      this.connection.send("");
+    }, 45000);
+  }
+
+  setNick(nick) {
+    this.connection.send(`NICK ${nick}`);
+  }
+
+  joinChanel(name) {
+    this.connection.send(`JOIN ${name}`);
+  }
+
+  quit(name) {
+    this.connection.send(`QUIT ${name}`);
+  }
+
+  send(msg) {
+    this.connection.send(msg);
   }
 }
 
-class FickerIrcBot extends IrcBot {
+class FickerIrcBot extends IrcSocket {
   constructor(url, chanel, nick, fickConditions, fickTopics) {
     super(url);
     this.chanel = chanel;
@@ -14,12 +36,12 @@ class FickerIrcBot extends IrcBot {
   }
 
   init() {
-    this.irc.connection.addEventListener("open", () => {
-      this.irc.setNick(this.nick);
-      this.irc.joinChanel(this.chanel);
+    this.connection.addEventListener("open", () => {
+      this.setNick(this.nick);
+      this.joinChanel(this.chanel);
     });
 
-    this.irc.connection.addEventListener("message", async (e) => {
+    this.connection.addEventListener("message", async (e) => {
       var line = e.data;
       if (line instanceof Blob) {
         line = await e.data.text();
