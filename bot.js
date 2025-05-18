@@ -3,29 +3,25 @@ class IrcSocket {
     this.connection = new WebSocket(url);
   }
 
-  get client() {
-    return this.connection;
-  }
-
   keepConnection() {
     setInterval(() => {
-      this.client.send("");
+      this.connection.send("");
     }, 45000);
   }
 
   setNick(nick) {
-    this.client.send(`NICK ${nick}`);
+    this.connection.send(`NICK ${nick}`);
   }
 
   joinChanel(name) {
-    this.client.send(`JOIN ${name}`);
+    this.connection.send(`JOIN ${name}`);
   }
 
   quit(name) {
-    this.client.send(`QUIT ${name}`);
+    this.connection.send(`QUIT ${name}`);
   }
 
   send(msg) {
-    this.client.send(msg);
+    this.connection.send(msg);
   }
 }
