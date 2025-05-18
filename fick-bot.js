@@ -7,14 +7,16 @@ class IrcBot {
 class FickerIrcBot extends IrcBot {
   constructor(url, chanel, nick, fickConditions, fickTopics) {
     super(url);
+    this.chanel = chanel;
+    this.nick = nick;
     this.fickConditions = fickConditions;
     this.fickTopics = fickTopics;
   }
 
   init() {
     this.irc.connection.addEventListener("open", () => {
-      this.irc.setNick(nick);
-      this.irc.joinChanel(chanel);
+      this.irc.setNick(this.nick);
+      this.irc.joinChanel(this.chanel);
     });
     this.irc.connection.addEventListener("message", async (e) => {
       var line = e.data;
