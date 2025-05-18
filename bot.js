@@ -2,7 +2,10 @@
 
 class IrcSocket {
   constructor(url) {
-    this.connection = new WebSocket(url);
+    this.connection = new WebSocket(url, [
+      "text.ircv3.net",
+      "binary.ircv3.net",
+    ]);
   }
 
   get client() {
